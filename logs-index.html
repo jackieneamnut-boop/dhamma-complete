@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width">
+<title>สารบัญบันทึก DOLA</title>
+<style>body{font-family:sans-serif;max-width:850px;margin:auto;padding:18px;line-height:1.8;background:#fffaf0}h1{color:#8B4513;border-bottom:3px solid #8B4513}a{color:#8B4513;font-weight:bold}.card{background:#fff;padding:16px;border-radius:12px;margin:12px 0;box-shadow:0 2px 6px rgba(0,0,0,.06)}</style>
+</head>
+<body>
+<h1>สารบัญบันทึก DOLA</h1>
+<a href="index.html">← กลับหน้าแรก</a>
+<div class="card">
+<h3>บันทึกทั้งหมด - อัพเดทอัตโนมัติ</h3>
+<p id="status">กำลังโหลด...</p>
+<ul id="list"></ul>
+</div>
+<script>
+async function load(){
+  const s=document.getElementById('status'); const l=document.getElementById('list');
+  try{
+    const r=await fetch('https://api.github.com/repos/jackieneamnut-boop/dhamma-complete/contents?ref=main');
+    const files=await r.json();
+    const logs=files.filter(f=>f.name.startsWith('logs-')&&f.name.endsWith('.html')).sort((a,b)=>b.name.localeCompare(a.name));
+    if(logs.length==0){s.textContent='ยังไม่มีไฟล์ logs-*.html'; return;}
+    s.textContent='พบ '+logs.length+' ไฟล์';
+    logs.forEach(f=>{
+      const li=document.createElement('li');
+      li.innerHTML='<a href="'+f.name+'">'+f.name+'</a>';
+      l.appendChild(li);
+    });
+  }catch(e){s.textContent='โหลดไม่ได้ ให้ดูไฟล์ใน GitHub โดยตรง';}
+}
+load();
+</script>
+<div class="card">
+<h3>สร้างบันทึกใหม่</h3>
+<p>1. ดาวน์โหลด <a href="TEMPLATE-logs-YYYY-MM-DD.html">TEMPLATE-logs-YYYY-MM-DD.html</a></p>
+<p>2. เปลี่ยนชื่อเป็น logs-2026-09-13.html แล้วแก้เนื้อหา</p>
+<p>3. อัพโหลดขึ้น GitHub</p>
+</div>
+<a href="index.html">← กลับหน้าแรก</a>
+</body></html>
