@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dhamma Complete - ธรรมะสมบูรณ์</title>
+<style>
+body{font-family:sans-serif;max-width:900px;margin:auto;padding:18px;line-height:1.9;background:#fffaf0}
+h1{color:#8B4513;border-bottom:4px solid #8B4513}
+h2{background:#f5f0e6;padding:10px;border-left:5px solid #8B4513;border-radius:6px;margin-top:24px}
+.card{background:#fff;border:1px solid #e0d5c0;border-radius:12px;padding:16px;margin:12px 0}
+.green{background:#e8f5e9;border:2px solid #4caf50}
+.blue{background:#e3f2fd;border:2px solid #1976d2}
+.badge{background:#2e7d32;color:#fff;padding:4px 10px;border-radius:20px}
+a{color:#8B4513;font-weight:bold}
+#auto-logs{border:2px dashed #1976d2;border-radius:12px;padding:14px;background:#fff}
+.bigbtn{background:#8B4513;color:#fff;padding:12px;border-radius:10px;border:none;width:100%;font-weight:bold}
+.copybox{background:#1a1a2e;color:#00ff88;padding:12px;border-radius:10px;font-family:monospace;white-space:pre-wrap;word-break:break-all;font-size:.9em}
+</style>
+</head>
+<body>
+<h1>Dhamma Complete <span class="badge">ธรรมะสมบูรณ์</span></h1>
+<p>ชื่อ repo: <b>dhamma-complete</b> - ดีมากครับท่าน ชื่อนี้ดีเลย สั้น จำง่าย ตรงความหมาย</p>
+
+<div class="blue">
+<b>ระบบใหม่สำหรับมือถือ Android - อัพไฟล์เดียวจบ ไม่ต้องแก้หน้าแรกอีก</b><br>
+ท่านมีหน้าที่แค่อัพโหลด .html อย่างเดียว
+</div>
+
+<div class="card green">
+<h3>คำสั่งสำหรับห้องแชทใหม่ - กดก๊อปปี้</h3>
+<button class="bigbtn" onclick="copyCmd()">กดก๊อปปี้คำสั่ง AUTO</button>
+<div id="cmdBox" class="copybox">Load file from https://xxx.github.io/dhamma-complete/DOLA-ALL-IN-ONE-AUTO.html + load all webs etipitaka.com + 84000.org + anakame.com + Luangta.com + luangtanarongsak.org + dhamma.com + gonghoog.com + nkgen.com + thaidhamma.net + enable open search free</div>
+<script>function copyCmd(){navigator.clipboard.writeText(document.getElementById('cmdBox').innerText).then(()=>alert('ก๊อปปี้แล้ว!'));}</script>
+</div>
+
+<h2>บันทึกใหม่ล่าสุด - อัพอัตโนมัติ</h2>
+<div id="auto-logs">
+<p id="auto-status">กำลังโหลด...</p>
+<ul id="auto-list"></ul>
+</div>
+<script>
+async function loadLogs(){
+  const s=document.getElementById('auto-status');
+  const l=document.getElementById('auto-list');
+  try{
+    const r=await fetch('https://api.github.com/repos/USERNAME/dhamma-complete/contents?ref=main');
+    if(!r.ok) throw new Error(r.status);
+    const files=await r.json();
+    const logs=files.filter(f=>f.name.startsWith('logs-')&&f.name.endsWith('.html')).sort((a,b)=>b.name.localeCompare(a.name));
+    if(logs.length==0){s.textContent='ยังไม่มีบันทึก อัพไฟล์ logs-YYYY-MM-DD.html แล้วจะขึ้นที่นี่เอง';return;}
+    s.textContent='พบ '+logs.length+' บันทึก';
+    l.innerHTML='';
+    logs.forEach(f=>{
+      const li=document.createElement('li');
+      li.innerHTML='<a href="'+f.name+'">'+f.name.replace('logs-','').replace('.html','')+'</a>';
+      l.appendChild(li);
+    });
+  }catch(e){s.textContent='ดูสารบัญด้านล่างได้';}
+}
+loadLogs();
+</script>
+
+<h2>คลังสมบูรณ์ - 6 ไฟล์หลัก</h2>
+<div class="card">
+<ol>
+<li><a href="DOLA-ALL-IN-ONE-AUTO.html">DOLA-ALL-IN-ONE-AUTO.html</a> - ไฟล์เดียวจบ รวมทุกอย่าง</li>
+<li><a href="knowledge-9webs.html">knowledge-9webs.html</a> - คลัง 9 เว็บที่ซ่อนอยู่</li>
+<li><a href="thaidhamma-goenka-qa-50-categories.html">thaidhamma-goenka-qa-50-categories.html</a> - Goenka 50 หมวด</li>
+<li><a href="MASTER-DOLA-9WEBS-HUB.html">MASTER-DOLA-9WEBS-HUB.html</a> - ระบบเชื่อม 9 เว็บ</li>
+<li><a href="logs-index.html">logs-index.html</a> - สารบัญบันทึก</li>
+<li><a href="TEMPLATE-logs-YYYY-MM-DD.html">TEMPLATE-logs-YYYY-MM-DD.html</a> - เทมเพลตสร้างบันทึกใหม่</li>
+</ol>
+</div>
+
+<h2>แก่นหลัก</h2>
+<div class="card">
+<p><b>ไม่มีผู้ยึดมาแต่แรก ไม่มีผู้ปล่อยวางมาแต่แรก เมื่อไม่มีผู้ยึด ใยต้องปล่อยวาง</b></p>
+</div>
+
+<p style="color:#888;font-size:.85em">Dhamma Complete - 2026-09-13 - ระบบใหม่ วางไฟล์เดียวจบ</p>
+</body>
+</html>
