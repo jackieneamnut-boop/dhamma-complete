@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dhamma Complete - ธรรมะสมบูรณ์</title>
+<style>
+body{font-family:sans-serif;max-width:900px;margin:auto;padding:18px;line-height:1.85;background:#fffaf0;color:#222}
+h1{color:#8B4513;border-bottom:3px solid #8B4513;padding-bottom:10px}
+h2{background:#f5f0e6;padding:10px 14px;border-left:5px solid #8B4513;margin-top:28px;border-radius:4px}
+.card{background:#fff;border:1px solid #e0d5c0;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+a{color:#8B4513;font-weight:bold;text-decoration:none}
+a:hover{text-decoration:underline}
+.green{background:#e8f5e9;border:2px solid #4caf50;padding:14px;border-radius:12px}
+.blue{background:#e3f2fd;border:2px solid #1976d2;padding:14px;border-radius:12px}
+.yellow{background:#fff8e1;border-left:5px solid #ffb300;padding:14px;border-radius:8px}
+.badge{background:#8B4513;color:#fff;padding:2px 8px;border-radius:12px;font-size:.8em}
+#auto-logs{background:#fff;border:2px dashed #1976d2;border-radius:12px;padding:14px}
+</style>
+</head>
+<body>
+<h1>Dhamma Complete - ธรรมะสมบูรณ์ <span class="badge">dhamma-complete</span></h1>
+
+<div class="blue">
+<b>ระบบใหม่สำหรับมือถือ Android - อัพไฟล์เดียวจบ ไม่ต้องแก้หน้าแรกอีก</b><br>
+ท่านมีหน้าที่แค่อัพโหลด .html อย่างเดียว - บันทึกใหม่จะขึ้นอัตโนมัติ
+</div>
+
+<div id="auto-logs">
+<h3>🔥 บันทึกใหม่ล่าสุด - อัพเดทอัตโนมัติ</h3>
+<p id="auto-status">กำลังโหลดรายการบันทึกจาก GitHub...</p>
+<ul id="auto-list"></ul>
+</div>
+
+<script>
+async function loadLogs(){
+  const s=document.getElementById('auto-status'); const l=document.getElementById('auto-list');
+  try{
+    const r=await fetch('https://api.github.com/repos/jackieneamnut-boop/dhamma-complete/contents?ref=main&per_page=100');
+    if(!r.ok) throw new Error(r.status);
+    const files=await r.json();
+    const logs=files.filter(f=>f.name.startsWith('logs-')&&f.name.endsWith('.html')).sort((a,b)=>b.name.localeCompare(a.name));
+    if(logs.length==0){s.textContent='ยังไม่มีบันทึก - สร้างไฟล์ logs-YYYY-MM-DD.html แล้วอัพโหลดได้เลย';return;}
+    s.textContent='พบ '+logs.length+' บันทึก';
+    l.innerHTML='';
+    logs.forEach(f=>{
+      const li=document.createElement('li');
+      li.innerHTML='<a href="'+f.name+'">'+f.name.replace('logs-','').replace('.html','')+' - '+f.name+'</a>';
+      l.appendChild(li);
+    });
+  }catch(e){
+    s.textContent='โหลดอัตโนมัติไม่ได้ (API เต็ม) - ดูสารบัญด้านล่างได้เลย';
+    s.innerHTML += '<br><a href="logs-index.html">→ ไปสารบัญบันทึก</a>';
+  }
+}
+loadLogs();
+</script>
+
+<h2>คลังสมบูรณ์ - 6 ไฟล์หลัก</h2>
+<div class="card">
+<ol>
+<li><a href="DOLA-ALL-IN-ONE-AUTO.html">DOLA-ALL-IN-ONE-AUTO.html</a> - ไฟล์เดียวจบ รวมทุกอย่าง ระบบอัตโนมัติ</li>
+<li><a href="knowledge-9webs.html">knowledge-9webs.html</a> - คลัง 9 เว็บที่ซ่อนอยู่</li>
+<li><a href="thaidhamma-goenka-qa-50-categories.html">thaidhamma-goenka-qa-50-categories.html</a> - Goenka 50 หมวด</li>
+<li><a href="MASTER-DOLA-9WEBS-HUB.html">MASTER-DOLA-9WEBS-HUB.html</a> - ระบบเชื่อม 9 เว็บ</li>
+<li><a href="logs-index.html">logs-index.html</a> - สารบัญบันทึก</li>
+<li><a href="TEMPLATE-logs-YYYY-MM-DD.html">TEMPLATE-logs-YYYY-MM-DD.html</a> - เทมเพลตสร้างบันทึกใหม่</li>
+</ol>
+</div>
+
+<h2>แก่นหลัก</h2>
+<div class="yellow">
+<b>ไม่มีผู้ยึดมาแต่แรก ไม่มีผู้ปล่อยวางมาแต่แรก เมื่อไม่มีผู้ยึด ใยต้องปล่อยวาง</b><br>
+เมื่อไม่มีผู้ยึด ใยต้องปล่อยวาง - จิตเห็นจิตเป็นมรรค
+</div>
+
+<div class="green">
+<b>วิธีใช้งาน:</b><br>
+1. ก็อปไฟล์ TEMPLATE-logs-YYYY-MM-DD.html → เปลี่ยนชื่อเป็น logs-2026-09-13.html<br>
+2. แก้เนื้อหาข้างใน<br>
+3. อัพโหลดขึ้น GitHub - จะขึ้นในกล่อง "บันทึกใหม่ล่าสุด" อัตโนมัติเลย!
+</div>
+
+<p style="text-align:center;margin-top:30px;color:#8B4513">Dhamma Complete - 2026-09-13 - ระบบใหม่ วางไฟล์เดียวจบ</p>
+</body></html>
