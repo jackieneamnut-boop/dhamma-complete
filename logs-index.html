@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>รวมบันทึกทั้งหมด | DHAMMA-COMPLETE</title>
+<style>
+  body{margin:0;background:#fffaf0;font-family:system-ui,sans-serif;color:#111;line-height:1.7}
+  .wrap{max-width:900px;margin:0 auto;padding:28px 20px 80px}
+  a{color:#1d4ed8;text-decoration:none} a:hover{text-decoration:underline}
+  .card{background:white;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+  .muted{color:#6b7280;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="./index.html">← กลับหน้าแรก</a>
+  <h1>📝 รวมบันทึกทั้งหมด</h1>
+  <div id="count" class="muted">กำลังโหลด...</div>
+  <div id="list"></div>
+  <p class="muted" style="margin-top:24px">หน้านี้ดึงไฟล์อัตโนมัติจาก GitHub API ที่ชื่อขึ้นต้นด้วย logs- และลงท้าย .html ถ้า API จำกัด จะมี fallback ไม่พัง</p>
+</div>
+<script>
+async function load(){
+  const elList = document.getElementById("list");
+  const elCount = document.getElementById("count");
+  try{
+    const res = await fetch("https://api.github.com/repos/jackieneamnut-boop/dhamma-complete/contents?per_page=100");
+    if(!res.ok) throw new Error();
+    const files = await res.json();
+    const logs = files.filter(f=>f.name.startsWith("logs-") && f.name.endsWith(".html")).sort((a,b)=>b.name.localeCompare(a.name));
+    elCount.textContent = "พบ " + logs.length + " บันทึก";
+    if(logs.length===0){ elList.innerHTML = "<p>ยังไม่มีไฟล์ logs-*.html — ให้อัพไฟล์ใหม่ตาม TEMPLATE-logs-YYYY-MM-DD.html</p>"; return; }
+    elList.innerHTML = logs.map(f=>'<div class="card"><a href="./'+f.name+'">'+f.name+'</a><span class="muted">'+(f.size?Math.round(f.size/1024)+' KB':'')+'</span></div>').join('');
+  }catch(e){
+    elCount.textContent = "โหลดจาก API ไม่ได้ (อาจถึงลิมิต 60 ครั้ง/ชม.)";
+    elList.innerHTML = '<p class="muted">ให้เข้าไปที่ <a href="https://github.com/jackieneamnut-boop/dhamma-complete" target="_blank">github.com/jackieneamnut-boop/dhamma-complete</a> แล้วดูไฟล์ logs-* โดยตรง</p>';
+  }
+}
+load();
+</script>
+</body>
+</html>
