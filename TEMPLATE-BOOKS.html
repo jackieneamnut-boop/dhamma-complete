@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMPLATE-BOOKS - แม่แบบหนังสือธรรมะ</title>
+<style>
+  :root{--paper:#FFFEFB;--ink:#1E1E1C;--line:#EAE3D8;--muted:#7A7A73;--accent:#8C5A1E}
+  *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:"Sarabun",system-ui,sans-serif;line-height:1.8}
+  .book{max-width:760px;margin:0 auto;padding:0 0 80px}
+  .cover{padding:64px 32px 48px;border-bottom:1px solid var(--line);text-align:center;background:radial-gradient(600px 400px at 50% -10%,#FFF2D6 0%,#FFFEFB 70%)}
+  .cover h1{font-size:38px;margin:10px 0;letter-spacing:-.02em} .cover .sub{color:var(--muted)}
+  .toc-wrap{padding:28px 32px;border-bottom:1px solid var(--line);background:#fff}
+  .toc-title{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .toc{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px} @media(max-width:600px){.toc{grid-template-columns:1fr}}
+  .toc a{font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px dashed #EADFCB;padding:4px 0}
+  .toc a:hover{color:var(--accent)} .toc a span{color:var(--muted);font-size:12px;margin-left:8px}
+  .content{padding:28px 32px}
+  .qa{border-left:3px solid var(--line);padding:10px 0 10px 18px;margin:22px 0}
+  .qa .q{font-weight:700} .qa .a{margin-top:6px;color:#3A3A36}
+  .logic-tag{display:inline-block;background:#1E1E1C;color:#fff;border-radius:999px;font-size:10px;padding:2px 8px;letter-spacing:.08em;margin-right:6px}
+  h2{font-size:22px;margin:40px 0 10px}
+  .footer{padding:20px 32px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="book">
+  <div class="cover">
+    <div style="font-size:12px;letter-spacing:.22em;color:var(--muted)">GOENKA Q&A STYLE • DHAMMA BOOK TEMPLATE</div>
+    <h1>ชื่อหนังสือธรรมะ</h1>
+    <div class="sub">คำถาม-คำตอบ แบบท่านโกเอ็นก้า เชื่อมโยงตรรกะ V7</div>
+    <div style="margin-top:18px;font-size:13px;color:var(--muted)">Logic Rank 1: อนัตตา - ไม่มีผู้ยึดมาแต่แรก • 7 Styles</div>
+  </div>
+
+  <div class="toc-wrap">
+    <div class="toc-title">สารบัญ • TABLE OF CONTENTS — แบบ Goenka Q&A</div>
+    <div class="toc" id="toc">
+      <a href="#c1">1. จอว่างคืออะไร <span>empty_screen</span></a>
+      <a href="#c2">2. ทำไมต้อง 553 ครั้ง <span>no_self_553</span></a>
+      <a href="#c3">3. เราเป็นผ้าหรือคราบ <span>we_are_cloth</span></a>
+      <a href="#c4">4. ผ่านตลอดทำอย่างไร <span>pass_through</span></a>
+      <a href="#c5">5. ปราสาททรายของตัวเรา <span>sand_castle</span></a>
+      <a href="#c6">6. เมฆลอยเองจริงหรือ <span>clouds</span></a>
+      <a href="#c7">7. คลื่นกับน้ำ ต่างกันไหม <span>wave_water</span></a>
+      <a href="#c8">8. สอบอารมณ์แบบหลวงตา <span>exam</span></a>
+      <a href="#c9">9. บทสรุป Rank 1 <span>anatta</span></a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2 id="c1"><span class="logic-tag">จอว่าง</span> จอว่างคืออะไร</h2>
+    <div class="qa">
+      <div class="q">ศิษย์: เวลาโกรธ มันท่วมไปหมด จะเห็นเป็นจอว่างได้อย่างไร?</div>
+      <div class="a">อาจารย์: โกรธคือหนังเรื่องหนึ่งที่ฉายมา จอไม่เคยโกรธตามหนัง จอว่างอยู่ก่อนหนังฉาย ระหว่างฉาย และหลังจบ ให้รู้ว่าจอว่างอยู่แล้ว ไม่ต้องทำจอให้ว่าง</div>
+    </div>
+
+    <h2 id="c2"><span class="logic-tag">553</span> ทำไมต้องรถไม่มีตัวตน 553 ครั้ง</h2>
+    <div class="qa">
+      <div class="q">ศิษย์: ท่อง 553 ครั้งไม่เบื่อหรือ?</div>
+      <div class="a">อาจารย์: สัญญาเดิมว่า "มีเรา" มันท่องมาเป็นล้านครั้งในสังสารวัฏ 553 ครั้งคือการล้างโปรแกรมเก่า ให้สมองยอมรับความจริงว่า รถไม่มีคนขับ มีแต่ขันธ์ทำงาน</div>
+    </div>
+
+    <h2 id="c3"><span class="logic-tag">ผ้า</span> เราเป็นผ้า</h2>
+    <p>เมื่อความรู้สึกผิดเกิดขึ้น อย่าเป็นคราบ ให้เป็นผ้า ผ้าเช็ดคราบแล้วคราบก็ผ่านไป ผ้าไม่เคยกลายเป็นคราบ</p>
+
+    <h2 id="c4"><span class="logic-tag">ผ่านตลอด</span> ผ่านตลอด</h2>
+    <p>ไม่ต้องไปดับความคิด ให้ผ่านตลอด เหมือนเปิดประตูหน้าหลัง ลมพัดผ่านเอง ไม่มีผู้เปิดปิด</p>
+
+    <h2 id="c8"><span class="logic-tag">EXAM</span> สอบอารมณ์แบบหลวงตา</h2>
+    <div class="qa">
+      <div class="q">ใครกำลังบอกว่าปฏิบัติไม่ก้าวหน้า?</div>
+      <div class="a">ชี้กลับไปที่ตัวบ่น แล้วจะเห็นว่าไม่มีผู้บ่นมาแต่แรก มีแต่อาการบ่นเกิดดับบนจอว่าง — นี่คือ Rank 1 ทำงาน</div>
+    </div>
+
+    <h2 id="c9"><span class="logic-tag">RANK 1</span> บทสรุป อนัตตา</h2>
+    <p><b>ไม่มีผู้ยึดมาแต่แรก</b> ประโยคนี้ประโยคเดียวจบกิจ ไม่ต้องเดินทางไปหาความว่าง เพราะความว่างเป็นพื้นอยู่แล้ว งานทั้งหมดคือหยุดสร้างผู้เดินทาง</p>
+  </div>
+
+  <div class="footer">TEMPLATE-BOOKS • เชื่อมต่อ DHAMMA-LOGIC-MASTER-V7 อัตโนมัติผ่าน JSON tag id="DHAMMA-LOGIC-MASTER-V7" • Goenka Q&A TOC</div>
+</div>
+
+<script>
+// Auto link to MASTER V7 if present
+(function(){
+  try{
+    const master = document.getElementById('DHAMMA-LOGIC-MASTER-V7');
+    if(!master && window.DHAMMA_V7){
+      console.log('Connected to V7', window.DHAMMA_V7.config.version);
+    }
+  }catch(e){}
+  // Auto generate TOC anchors from H2
+  document.querySelectorAll('.content h2').forEach(h=>{
+    if(!h.id) h.id = h.textContent.trim().toLowerCase().replace(/\s+/g,'-');
+  });
+})();
+</script>
+</body>
+</html>
