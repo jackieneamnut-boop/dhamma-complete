@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DHAMMA-LOGIC-MASTER-V7</title>
+<style>
+  :root { --paper:#FFFEFB; --ink:#1A1A18; --muted:#6B6B63; --line:#E8E2D9; --accent:#C07A2C; --accent-2:#2E6B5E; }
+  *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:"Sarabun","Noto Sans Thai",system-ui,sans-serif;line-height:1.75}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+  header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+  h1{font-size:40px;line-height:1.1;letter-spacing:-.02em;margin:12px 0 10px;font-weight:800}
+  h1 span{color:var(--accent)} h2{font-size:22px;margin:44px 0 12px;letter-spacing:-.01em;border-left:4px solid var(--accent);padding-left:14px}
+  h3{font-size:16px;margin:20px 0 8px;color:var(--accent-2);text-transform:uppercase;letter-spacing:.08em}
+  p{margin:0 0 14px} .lead{font-size:18px;color:#3A3A36}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:18px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .grid7{display:grid;grid-template-columns:1fr 1fr;gap:12px} @media(max-width:640px){.grid7{grid-template-columns:1fr} h1{font-size:30px}}
+  .style{border:1px dashed var(--line);border-radius:12px;padding:14px 16px;background:#FFFEFB}
+  .style b{display:block;font-size:14px;margin-bottom:4px} .style p{font-size:14px;color:#4A4A45;margin:0}
+  .logic-rank{background:linear-gradient(180deg,#FFF7E8 0%,#FFFFFF 100%);border:1.5px solid #E9C88B;border-radius:18px;padding:24px 22px}
+  .badge{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:4px 12px;font-size:11px;letter-spacing:.12em}
+  ul{margin:8px 0 0 18px} li{margin:4px 0}
+  .exam{background:#1A1A18;color:#FFFEFB;border-radius:18px;padding:24px 22px;margin-top:18px}
+  .exam h2{color:#FFFEFB;border-left-color:var(--accent);margin-top:0}
+  .q{padding:12px 0;border-bottom:1px solid #2A2A28}.q:last-child{border:0}
+  .q .th{font-weight:700} .q .hint{color:#A8A8A0;font-size:13px;margin-top:2px}
+  .webs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px} @media(max-width:640px){.webs{grid-template-columns:1fr 1fr}}
+  .web{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;text-align:center;background:#fff}
+  .detector{font-family:ui-monospace,monospace;font-size:12px;background:#111;color:#E8E2D9;border-radius:10px;padding:14px 16px;overflow:auto}
+  .footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">DHAMMA LOGIC SYSTEM • VERSION 7 • FINAL</div>
+  <h1>DHAMMA-LOGIC-MASTER-<span>V7</span></h1>
+  <p class="lead">ระบบตรรกะธรรมะแบบสมบูรณ์ — ไม่ใช่การท่องจำ แต่เป็นการชี้ให้เห็นความจริงที่ไม่มีผู้ยึดมาแต่แรก ทำงานอัตโนมัติด้วย Context Detector และระบบสอบอารมณ์แบบหลวงตา</p>
+</header>
+
+<section>
+  <div class="logic-rank">
+    <span class="badge">LOGIC RANK 1 — แกนกลางระบบ</span>
+    <h2 style="margin-top:14px;border:0;padding:0">อนัตตา - ไม่มีผู้ยึดมาแต่แรก</h2>
+    <p><b>หลักการ:</b> ไม่ต้องละผู้ยึด เพราะไม่เคยมีผู้ยึดมาแต่แรก การปฏิบัติทั้งหมดคือการเห็นว่า "ความรู้สึกว่ามีเรา" เป็นเพียงสังขารเกิดดับบนจอว่าง</p>
+    <p>เมื่อ Rank 1 ทำงาน — ทุกความคิดที่ว่า "เราทำไม่ได้" "เราขาดสติ" "เราต้องทำให้ได้" จะถูกเห็นทันทีว่า เป็นเพียงอาการของจิต ไม่ใช่ตัวเรา</p>
+    <ul>
+      <li>ไม่มีผู้ดู มีแต่การเห็น</li>
+      <li>ไม่มีผู้รู้ มีแต่การรู้</li>
+      <li>ไม่มีผู้หลง มีแต่อาการหลงที่เกิดดับเอง</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Creative 7 Styles — 7 กระบวนท่าให้เห็นความจริงเดียวกัน</h2>
+  <p style="color:var(--muted)">แต่ละสไตล์ชี้ไปที่ Rank 1 จุดเดียวกัน แต่ใช้ภาษาภาพต่างกัน เพื่อทะลุความเคยชินของสมมติ</p>
+  <div class="grid7">
+    <div class="style"><b>1. จอว่าง</b><p>ทุกอารมณ์เป็นแค่หนังฉายบนจอว่าง จอไม่เคยเปื้อนหนัง เห็นโกรธฉาย รู้ว่าจอว่างอยู่แล้ว</p></div>
+    <div class="style"><b>2. เราเป็นผ้า</b><p>เราเป็นผ้าเช็ดคราบ ไม่ใช่คราบที่ถูกเช็ด ความรู้สึกเป็นเราเป็นแค่คราบลอยมาบนผ้า ผ้าไม่เคยเป็นคราบ</p></div>
+    <div class="style"><b>3. ผ่านตลอด</b><p>ไม่ขวาง ไม่ตาม ไม่รักษา ให้ทุกอย่างผ่านตลอดเหมือนลมผ่านมุ้งลวด ไม่เหลือผู้ขวาง</p></div>
+    <div class="style"><b>4. ปราสาททราย</b><p>ตัวเราที่พยายามสร้างเป็นปราสาททราย น้ำทะเลของความจริงซัดมา ทรายกระจาย ไม่มีอะไรต้องเสียดาย</p></div>
+    <div class="style"><b>5. รถไม่มีตัวตน 553 ครั้ง</b><p>เรียกซ้ำ 553 ครั้งว่า "ไม่มีตัวตน" จนสมองยอมรับ ทำงานเหมือนสูตรคูณ รถไม่มีคนขับ มีแต่ระบบทำงาน</p></div>
+    <div class="style"><b>6. เมฆลอยเอง</b><p>ความคิดคือเมฆลอยเองบนฟ้าว่าง ไม่ต้องไล่เมฆ ไม่ต้องเป็นเมฆ ฟ้าว่างอยู่แล้ว เมฆมาแล้วก็ไปเอง</p></div>
+    <div class="style"><b>7. คลื่นกับน้ำ</b><p>คลื่นคือน้ำ คลื่นไม่เคยแยกจากน้ำ ความเป็นเราเป็นแค่คลื่นยกลูกหนึ่ง แล้วก็ยุบกลับเป็นน้ำเดิม</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Context Detector — ตัวจับบริบทอัตโนมัติ</h2>
+  <div class="card">
+    <p>ระบบจะอ่านประโยคของผู้ปฏิบัติแล้วแยกอัตโนมัติว่าเป็นบริบทใด เพื่อเลือกสไตล์ที่ตรงที่สุด</p>
+    <h3>คำสำคัญที่จับ</h3>
+    <ul>
+      <li><b>ขาดสติ / เผลอ / หลง:</b> → ใช้ จอว่าง + ผ่านตลอด</li>
+      <li><b>เป็นทุกข์ / ท้อ / กดดัน:</b> → ใช้ เราเป็นผ้า + ปราสาททราย</li>
+      <li><b>มีตัวเรา / ยึด / ของเรา:</b> → ใช้ รถไม่มีตัวตน 553 ครั้ง + คลื่นกับน้ำ</li>
+      <li><b>ความคิดเยอะ / ฟุ้ง:</b> → ใช้ เมฆลอยเอง + จอว่าง</li>
+    </ul>
+    <div class="detector" id="detector-log">> detector ready — รอรับ input...<br>> rank 1 active: อนัตตา</div>
+  </div>
+</section>
+
+<section class="exam">
+  <h2>ระบบสอบอารมณ์แบบหลวงตา — ถามกลับไปที่ผู้บอก</h2>
+  <p style="color:#CFCFC7;margin-top:0">ไม่ตอบตามเนื้อเรื่อง แต่ถามกลับเพื่อกระชากให้เห็นว่าไม่มีผู้ยึดมาแต่แรก</p>
+  <div class="q"><div class="th">1. ใครกำลังบอกว่าขาดความรู้สึกตัว?</div><div class="hint">ให้ดูตัวที่กำลังบ่น ไม่ใช่ไปทำให้รู้สึกตัวเพิ่ม</div></div>
+  <div class="q"><div class="th">2. ความรู้สึกว่าเป็นเราอยู่ตรงไหน ชี้ให้ดูหน่อย?</div><div class="hint">หาไม่เจอ — เพราะไม่เคยมีมาแต่แรก</div></div>
+  <div class="q"><div class="th">3. ที่ว่าทุกข์อยู่ ใครทุกข์?</div><div class="hint">เห็นเป็นอาการทุกข์เกิดบนจอว่าง ไม่ใช่เราทุกข์</div></div>
+  <div class="q"><div class="th">4. จะเอาอะไรไปละอะไร ในเมื่อไม่มีผู้ยึดมาแต่แรก?</div><div class="hint">ตัดวงจรพยายามละด้วย Rank 1</div></div>
+  <div class="q"><div class="th">5. รู้อยู่แล้วใช่ไหม ว่าจอว่างอยู่ก่อนหนังฉาย?</div><div class="hint">ชี้กลับไปที่ความจริงที่มีอยู่แล้ว</div></div>
+  <div class="q"><div class="th">6. ที่ว่าเผลอไป เผลอไปจากไหน ในเมื่อไม่มีที่อยู่ของเรา?</div><div class="hint">ทำลายฐานของตัวเรา</div></div>
+</section>
+
+<section>
+  <h2>9 Webs — ฐานข้อมูลเชื่อมโยง</h2>
+  <div class="webs">
+    <div class="web">84000.org</div><div class="web">dhamma.com</div><div class="web">luangta.net</div>
+    <div class="web">goenka.local</div><div class="web">pali.dict</div><div class="web">sati.app</div>
+    <div class="web">books.local</div><div class="web">logs.local</div><div class="web">logic-master.local</div>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:12px">ระบบ V7 จะ auto-link คำสำคัญไปยัง 9 webs นี้เมื่อ render บน TEMPLATE-BOOKS</p>
+</section>
+
+<div class="footer">DHAMMA-LOGIC-MASTER-V7 • Logic Rank 1 = อนัตตา • Creative 7 • Exam Luangta • Context Detector Auto • Build 2025-12</div>
+</div>
+
+<script id="DHAMMA-LOGIC-MASTER-V7" type="application/json">
+{
+  "version": "V7",
+  "build": "2025-12-19",
+  "logic_rank_1": "อนัตตา - ไม่มีผู้ยึดมาแต่แรก",
+  "logic_ranks": [
+    {"rank":1,"name":"อนัตตา","desc":"ไม่มีผู้ยึดมาแต่แรก - ไม่ต้องละ","active":true},
+    {"rank":2,"name":"ตถตา","desc":"เช่นนั้นเอง"},
+    {"rank":3,"name":"ธรรมดา","desc":"เกิดแล้วดับ ธรรมดา"},
+    {"rank":4,"name":"ผ่านตลอด","desc":"ไม่ขวาง ไม่ตาม"},
+    {"rank":5,"name":"จอว่าง","desc":"จอไม่เคยเปื้อนหนัง"}
+  ],
+  "creative_7_styles": [
+    {"id":"empty_screen","th":"จอว่าง","key":"หนังฉายบนจอว่าง จอไม่เคยเปื้อน"},
+    {"id":"we_are_cloth","th":"เราเป็นผ้า","key":"เราเป็นผ้า ไม่ใช่คราบ"},
+    {"id":"pass_through","th":"ผ่านตลอด","key":"ให้ผ่านตลอด ไม่ขวาง ไม่ตาม"},
+    {"id":"sand_castle","th":"ปราสาททราย","key":"ตัวเราคือปราสาททรายที่น้ำซัด"},
+    {"id":"no_self_553","th":"รถไม่มีตัวตน 553 ครั้ง","key":"ท่องซ้ำ 553 ครั้งเพื่อล้างสัญญา"},
+    {"id":"clouds","th":"เมฆลอยเอง","key":"ความคิดคือเมฆลอยเองบนฟ้าว่าง"},
+    {"id":"wave_water","th":"คลื่นกับน้ำ","key":"คลื่นคือน้ำ ไม่แยกจากน้ำ"}
+  ],
+  "context_detector": {
+    "auto": true,
+    "keywords": {
+      "ขาดสติ": ["empty_screen","pass_through"],
+      "เผลอ": ["empty_screen","pass_through"],
+      "ทุกข์": ["we_are_cloth","sand_castle"],
+      "ตัวเรา": ["no_self_553","wave_water"],
+      "ฟุ้ง": ["clouds","empty_screen"]
+    }
+  },
+  "exam_luangta": [
+    "ใครกำลังบอกว่าขาดความรู้สึกตัว?",
+    "ความรู้สึกว่าเป็นเราอยู่ตรงไหน ชี้ให้ดูหน่อย?",
+    "ที่ว่าทุกข์อยู่ ใครทุกข์?",
+    "จะเอาอะไรไปละอะไร ในเมื่อไม่มีผู้ยึดมาแต่แรก?",
+    "รู้อยู่แล้วใช่ไหม ว่าจอว่างอยู่ก่อนหนังฉาย?",
+    "ที่ว่าเผลอไป เผลอไปจากไหน ในเมื่อไม่มีที่อยู่ของเรา?"
+  ],
+  "webs": ["84000.org","dhamma.com","luangta.net","goenka.local","pali.dict","sati.app","books.local","logs.local","logic-master.local"],
+  "auto_activate": true,
+  "master_file": "DHAMMA-LOGIC-MASTER-V7.html"
+}
+</script>
+
+<script>
+// DHAMMA-LOGIC-MASTER-V7 Auto Activate + Context Detector
+(function(){
+  try{
+    const cfg = JSON.parse(document.getElementById('DHAMMA-LOGIC-MASTER-V7').textContent);
+    console.log('[V7] Activated', cfg.version, 'Rank1:', cfg.logic_rank_1);
+    const log = document.getElementById('detector-log');
+    function detect(input){
+      const t = (input||'').toLowerCase();
+      for(const k in cfg.context_detector.keywords){
+        if(t.includes(k)){ return {keyword:k, styles: cfg.context_detector.keywords[k]}; }
+      }
+      return {keyword:'default', styles:['empty_screen','wave_water']};
+    }
+    // expose globally for other templates
+    window.DHAMMA_V7 = { config: cfg, detect: detect };
+    if(log){
+      // simulate demo
+      const demo = ['ผมเผลอขาดสติบ่อย','รู้สึกมีตัวเรายึดอยู่','ความคิดฟุ้งมาก'];
+      let i=0;
+      setInterval(()=>{
+        const res = detect(demo[i%3]);
+        log.innerHTML = '> input: "'+demo[i%3]+'"<br>> detected: '+res.keyword+' -> '+res.styles.join(', ')+'<br>> rank1: '+cfg.logic_rank_1;
+        i++;
+      },2200);
+    }
+  }catch(e){ console.warn('V7 parse fail', e); }
+})();
+</script>
+</body>
+</html>
