@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Books Index - คลังหนังสือธรรมะ</title>
+<style>
+  :root{--bg:#FCFBF8;--card:#fff;--line:#E9E2D6;--ink:#1C1C19;--muted:#8A8A82;--accent:#B67A2A}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Sarabun,system-ui,sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:36px 20px 60px}
+  header{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}
+  h1{font-size:30px;margin:0;letter-spacing:-.02em} .muted{color:var(--muted);font-size:14px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+  .search{flex:1;min-width:220px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14px;background:#fff}
+  .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer}
+  .pill.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px} @media(max-width:860px){.grid{grid-template-columns:1fr 1fr}} @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .book-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;transition:.15s;cursor:pointer}
+  .book-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+  .cover{height:148px;border-radius:12px;background:linear-gradient(135deg,#FFF1D0,#E8DCC6);display:flex;align-items:center;justify-content:center;font-size:13px;color:#7A6A4E;margin-bottom:12px;position:relative;overflow:hidden}
+  .cover span{position:relative;z-index:1;font-weight:700;text-align:center;padding:0 12px}
+  .tag{font-size:10px;letter-spacing:.12em;background:#1C1C19;color:#fff;border-radius:999px;padding:3px 8px;display:inline-block;margin-bottom:8px}
+  .title{font-size:15px;font-weight:700;line-height:1.3;margin:0 0 4px}
+  .meta{font-size:12px;color:var(--muted)} .count{font-size:13px;margin-top:12px;color:var(--muted)}
+  .empty{padding:40px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px;background:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div style="font-size:11px;letter-spacing:.2em;color:var(--muted)">DHAMMA LIBRARY • AUTO DISCOVER</div>
+      <h1>คลังหนังสือธรรมะ</h1>
+      <div class="muted">ค้นหาไฟล์ TEMPLATE-BOOKS-*.html อัตโนมัติในโฟลเดอร์เดียวกัน</div>
+    </div>
+    <div class="muted" id="status">กำลังสแกน...</div>
+  </header>
+
+  <div class="toolbar">
+    <input id="search" class="search" placeholder="ค้นหาหนังสือ เช่น จอว่าง, อนัตตา, โกเอ็นก้า...">
+    <button class="pill active" data-filter="all">ทั้งหมด</button>
+    <button class="pill" data-filter="v7">V7</button>
+    <button class="pill" data-filter="goenka">Goenka</button>
+    <button class="pill" data-filter="exam">Exam</button>
+  </div>
+
+  <div id="grid" class="grid"></div>
+  <div id="count" class="count"></div>
+</div>
+
+<script>
+// books-index.html — auto discover books
+// วิธีการ: พยายาม fetch รายการไฟล์จาก directory listing หรือ fallback เป็นรายการตัวอย่างที่เชื่อม V7
+(function(){
+  const grid = document.getElementById('grid');
+  const countEl = document.getElementById('count');
+  const statusEl = document.getElementById('status');
+  const searchEl = document.getElementById('search');
+
+  // ตัวอย่างข้อมูล — เมื่อวางไฟล์จริง ระบบจะพยายามแทนที่ด้วยไฟล์จริงจาก fetch
+  const mockBooks = [
+    {file:"TEMPLATE-BOOKS-จอว่าง-อนัตตา.html", title:"จอว่าง • อนัตตา ไม่มีผู้ยึดมาแต่แรก", style:"จอว่าง", pages:24, updated:"2025-12-18"},
+    {file:"TEMPLATE-BOOKS-รถไม่มีตัวตน-553.html", title:"รถไม่มีตัวตน 553 ครั้ง", style:"รถไม่มีตัวตน 553 ครั้ง", pages:18, updated:"2025-12-17"},
+    {file:"TEMPLATE-BOOKS-ผ่านตลอด-เมฆลอยเอง.html", title:"ผ่านตลอด • เมฆลอยเอง", style:"ผ่านตลอด", pages:32, updated:"2025-12-16"},
+    {file:"TEMPLATE-BOOKS-เราเป็นผ้า-ปราสาททราย.html", title:"เราเป็นผ้า • ปราสาททราย", style:"เราเป็นผ้า", pages:21, updated:"2025-12-15"},
+    {file:"TEMPLATE-BOOKS-คลื่นกับน้ำ-จบกิจ.html", title:"คลื่นกับน้ำ — จบกิจด้วย Rank 1", style:"คลื่นกับน้ำ", pages:27, updated:"2025-12-19"},
+    {file:"TEMPLATE-BOOKS-Goenka-QA-ฉบับเต็ม.html", title:"Goenka Q&A ฉบับสมบูรณ์", style:"Goenka", pages:88, updated:"2025-12-19"}
+  ];
+
+  let books = [...mockBooks];
+  let activeFilter = 'all';
+
+  // พยายามอ่าน directory (ถ้าเซิร์ฟเวอร์เปิด listing)
+  async function tryFetchDir(){
+    try{
+      const res = await fetch('./');
+      const text = await res.text();
+      // หาไฟล์ .html ทั้งหมด
+      const matches = [...text.matchAll(/href="([^"]+\.html)"/g)].map(m=>m[1])
+        .filter(f=>f.includes('BOOKS') || f.includes('TEMPLATE'))
+        .filter(f=>!f.includes('books-index') && !f.includes('DHAMMA-LOGIC-MASTER'));
+      if(matches.length>0){
+        books = matches.map(f=>({file:f, title: f.replace('TEMPLATE-BOOKS-','').replace('.html','').replace(/-/g,' • '), style:'auto', pages:'-', updated:'auto'}));
+        statusEl.textContent = 'พบ ' + books.length + ' เล่มจากโฟลเดอร์จริง';
+      } else {
+        statusEl.textContent = 'โหมดตัวอย่าง (วางไฟล์จริงแล้วจะ auto discover)';
+      }
+    }catch(e){
+      statusEl.textContent = 'โหมดตัวอย่าง — ' + books.length + ' เล่ม (V7 Ready)';
+    }
+    render();
+  }
+
+  function render(){
+    const q = (searchEl.value||'').toLowerCase();
+    const filtered = books.filter(b=>{
+      const matchQ = !q || b.title.toLowerCase().includes(q) || b.file.toLowerCase().includes(q) || b.style.toLowerCase().includes(q);
+      const matchF = activeFilter==='all' || b.style.toLowerCase().includes(activeFilter) || b.file.toLowerCase().includes(activeFilter) || b.title.toLowerCase().includes(activeFilter);
+      return matchQ && matchF;
+    });
+    grid.innerHTML = filtered.map(b=>`
+      <div class="book-card" onclick="location.href='./${b.file}'">
+        <div class="cover"><span>${b.title}</span></div>
+        <div class="tag">${b.style.toUpperCase()}</div>
+        <div class="title">${b.title}</div>
+        <div class="meta">${b.file} • ${b.pages} หน้า • ${b.updated}</div>
+      </div>
+    `).join('') || '<div class="empty">ไม่พบหนังสือที่ตรงกับ "'+q+'"</div>';
+    countEl.textContent = 'แสดง ' + filtered.length + ' / ' + books.length + ' เล่ม • เชื่อม V7: อนัตตา - ไม่มีผู้ยึดมาแต่แรก';
+  }
+
+  searchEl.addEventListener('input', render);
+  document.querySelectorAll('.pill').forEach(p=>{
+    p.addEventListener('click', ()=>{
+      document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      activeFilter = p.dataset.filter;
+      render();
+    });
+  });
+
+  // ถ้ามี V7 config ให้แสดง rank
+  try{
+    const cfg = JSON.parse(document.getElementById('DHAMMA-LOGIC-MASTER-V7')?.textContent||'null');
+    if(cfg) statusEl.textContent = 'เชื่อม V7: ' + cfg.logic_rank_1;
+  }catch(e){}
+
+  tryFetchDir();
+})();
+</script>
+
+<script id="DHAMMA-LOGIC-MASTER-V7" type="application/json">
+{
+  "version":"V7",
+  "logic_rank_1":"อนัตตา - ไม่มีผู้ยึดมาแต่แรก",
+  "type":"books-index",
+  "auto_discover": true
+}
+</script>
+</body>
+</html>
